@@ -1,7 +1,7 @@
 # InternGuide
 
 **Product:** InternGuide
-**Student:** Sanket Vilas Parjane (Reg No: 2124UMLM2044)
+**Student:** Sanket Vilas Parjane (PRN No: 2124UMLM2044)
 
 **What it is (Problem/Solution):** 
 Explains how many internship hours and credits an engineering student needs under AICTE rules, how they are evaluated, and which government internship schemes (like PM Internship Scheme) they can apply to.
