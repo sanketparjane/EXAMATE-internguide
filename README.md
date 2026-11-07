@@ -13,3 +13,10 @@ A third-year E&TC student at Sanjivani who did a 4-week online internship and a 
 * Format: PDF (policy documents with tables and sample forms) + HTML
 * AICTE Source: https://aicte.gov.in/sites/default/files/Aicte%20Internship%20Policy-%2002.04.2019.pdf
 * UGC Source: https://www.ugc.gov.in/pdfnews/2051511_Internship-Research-Internship-Guidelines.pdf
+
+## How to run the API
+1. Activate your virtual environment: `source .venv/bin/activate` (or `.venv\Scripts\activate` on Windows).
+2. Install dependencies: `pip install -r requirements.txt`
+3. Start the FastAPI server using Uvicorn:
+   `uvicorn Day_4.app_main:app --reload`
+4. Access the interactive API docs at: `http://127.0.0.1:8000/docs`
