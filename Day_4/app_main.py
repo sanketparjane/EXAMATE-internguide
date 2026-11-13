@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import json
 from Day_4.app_smart_search import search_records
+from app.llm import ask
 
 app = FastAPI(title="InternGuide API")
 
@@ -12,6 +13,9 @@ def load_data():
 class QuestionModel(BaseModel):
     user_id: str
     query: str
+
+class ChatRequest(BaseModel):
+    question: str
 
 @app.get("/health")
 def health_check():
@@ -42,3 +46,12 @@ def post_question(question: QuestionModel):
         "user": question.user_id,
         "query": question.query
     }
+
+@app.post("/chat")
+def chat(request: ChatRequest):
+    """
+    Send a question to InternGuide AI (Gemini).
+    Returns: answer, confidence, follow_up
+    """
+    result = ask(request.question)
+    return result

@@ -7,3 +7,6 @@ venv/
 .pytest_cache/
 .DS_Store
 Thumbs.db
+# Environment / secrets — NEVER commit .env
+.env
+eval_results.json
