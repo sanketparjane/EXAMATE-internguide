@@ -1,7 +1,7 @@
 [
     {
         "activity_head": "Inter/ Intra Institutional Activities",
-        "sub_activity": "Inter/Intra Institutional Workshop/ Training",
+        "sub_activity": "Inter/ Intra Institutional Workshop/ Training",
         "suggested_credits": "3-4",
         "suggested_weeks": "3-4",
         "evidence_document": "Certificate",
@@ -19,21 +19,39 @@
     },
     {
         "activity_head": "Inter/ Intra Institutional Activities",
-        "sub_activity": "Festival (Technical / Business / Others) Events/ Contribution in Incubation/ Innovation/ Entrepreneurship Cell/ Institutional Innovation Council",
+        "sub_activity": "Festival (Technical / Business / Others) Events/",
         "suggested_credits": "3-4",
         "suggested_weeks": "3-4",
         "evidence_document": "Certificate",
-        "evaluated_by": "Programme Head / Cell In-charge",
+        "evaluated_by": "Programme Head",
         "id": 3
     },
     {
         "activity_head": "Inter/ Intra Institutional Activities",
-        "sub_activity": "Learning at Departmental Lab/Tinkering Lab/ Institutional workshop",
+        "sub_activity": "Contribution in Incubation/ Innovation/ Entrepreneurship Cell/ Institutional Innovation Council",
         "suggested_credits": "3-4",
         "suggested_weeks": "3-4",
         "evidence_document": "Certificate",
         "evaluated_by": "Cell In-charge",
         "id": 4
+    },
+    {
+        "activity_head": "Inter/ Intra Institutional Activities",
+        "sub_activity": "Learning at Departmental",
+        "suggested_credits": "3-4",
+        "suggested_weeks": "3-4",
+        "evidence_document": "Certificate",
+        "evaluated_by": "Cell In-charge",
+        "id": 5
+    },
+    {
+        "activity_head": "Inter/ Intra Institutional Activities",
+        "sub_activity": "Lab/Tinkering Lab/ Institutional workshop",
+        "suggested_credits": "3-4",
+        "suggested_weeks": "3-4",
+        "evidence_document": "Certificate",
+        "evaluated_by": "Cell In-charge",
+        "id": 6
     },
     {
         "activity_head": "Innovation / IPR / entrepreneurship",
@@ -42,7 +60,7 @@
         "suggested_weeks": "4-6",
         "evidence_document": "Certificate",
         "evaluated_by": "Faculty Mentor",
-        "id": 5
+        "id": 7
     },
     {
         "activity_head": "Innovation / IPR / entrepreneurship",
@@ -51,25 +69,25 @@
         "suggested_weeks": "4-6",
         "evidence_document": "Certificate",
         "evaluated_by": "Programme Head",
-        "id": 6
+        "id": 8
     },
     {
         "activity_head": "Innovation / IPR / entrepreneurship",
-        "sub_activity": "Participation in all the activities of Institute's Innovation Council for e.g.: IPR workshop/ Leadership Talks/ Idea/ Design/ Innovation/ Business Completion/ Technical Expos etc.",
+        "sub_activity": "Participation in all the activities of Institute’s Innovation Council for e.g.: IPR workshop/ Leadership Talks/ Idea/ Design/ Innovation/ Business Completion/ Technical Expos etc.",
         "suggested_credits": "4-6",
         "suggested_weeks": "4-6",
         "evidence_document": "Certificate",
         "evaluated_by": "President/ Convener of ICC",
-        "id": 7
+        "id": 9
     },
     {
         "activity_head": "Internship",
-        "sub_activity": "Internship with Industry/Govt. / NGO/PSU/Any Micro/Small/ Medium enterprise/ Online Internship",
+        "sub_activity": "Internship with Industry/ Govt. / NGO/ PSU/ Any Micro/ Small/ Medium enterprise/ Online Internship",
         "suggested_credits": "4-6",
         "suggested_weeks": "4-6",
         "evidence_document": "Evaluating Report",
         "evaluated_by": "Faculty Mentor / TPO / Industry supervisor",
-        "id": 8
+        "id": 10
     },
     {
         "activity_head": "Rural Internship",
@@ -78,7 +96,7 @@
         "suggested_weeks": "4-6",
         "evidence_document": "Evaluating Report",
         "evaluated_by": "Faculty Mentor/ TPO / NSS / NCC head",
-        "id": 9
+        "id": 11
     },
     {
         "activity_head": "NSQF Level 3,4,5",
@@ -87,7 +105,7 @@
         "suggested_weeks": "4-6",
         "evidence_document": "Certificate",
         "evaluated_by": "Faculty Mentor/NSQF Supervisor",
-        "id": 10
+        "id": 12
     },
     {
         "activity_head": "Project Work/ Seminar/",
@@ -96,56 +114,38 @@
         "suggested_weeks": "3-4",
         "evidence_document": "Project Report",
         "evaluated_by": "Project Head",
-        "id": 11
-    },
-    {
-        "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "Age requirement between 21 and 24 years",
-        "suggested_credits": "N/A",
-        "suggested_weeks": "N/A",
-        "evidence_document": "Aadhaar / DOB Proof",
-        "evaluated_by": "PMIS Portal",
-        "id": 12
-    },
-    {
-        "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "Education requirement (Not full-time employed/studying)",
-        "suggested_credits": "N/A",
-        "suggested_weeks": "N/A",
-        "evidence_document": "Degree / Passing Certificate",
-        "evaluated_by": "PMIS Portal",
         "id": 13
     },
     {
         "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "Family income below 8 Lakhs (No Govt job)",
+        "sub_activity": "Age between 21 to 24 years on application date",
         "suggested_credits": "N/A",
         "suggested_weeks": "N/A",
-        "evidence_document": "Income Certificate / Ration Card",
+        "evidence_document": "Aadhaar Card",
         "evaluated_by": "PMIS Portal",
         "id": 14
     },
     {
         "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "Duration is 12 months",
+        "sub_activity": "Family income limit of Rs 8 Lakh per annum",
         "suggested_credits": "N/A",
-        "suggested_weeks": "52",
-        "evidence_document": "Offer Letter",
-        "evaluated_by": "Industry Partner",
+        "suggested_weeks": "N/A",
+        "evidence_document": "ITR / Income Certificate",
+        "evaluated_by": "PMIS Portal",
         "id": 15
     },
     {
         "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "Stipend Split (4500 Govt + 500 Company)",
+        "sub_activity": "Monthly stipend of Rs 5000 (4500 company + 500 govt) for 12 months",
         "suggested_credits": "N/A",
-        "suggested_weeks": "N/A",
-        "evidence_document": "Bank Statement / DBT",
+        "suggested_weeks": "12 Months",
+        "evidence_document": "Bank Passbook / DBT",
         "evaluated_by": "DBT System",
         "id": 16
     },
     {
         "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "Maximum of 3 offers can be held/rejected",
+        "sub_activity": "Maximum of 3 internship offers can be held or rejected",
         "suggested_credits": "N/A",
         "suggested_weeks": "N/A",
         "evidence_document": "Portal Dashboard",
@@ -154,7 +154,7 @@
     },
     {
         "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "NOC required for final-year or ODL students",
+        "sub_activity": "NOC required from college for final-year or ODL students",
         "suggested_credits": "N/A",
         "suggested_weeks": "N/A",
         "evidence_document": "NOC from Institute",
@@ -163,7 +163,7 @@
     },
     {
         "activity_head": "PMIS Candidate Rule",
-        "sub_activity": "One-time grant of 6000 for incidentals",
+        "sub_activity": "One-time incidentals grant of Rs 6000 upon joining",
         "suggested_credits": "N/A",
         "suggested_weeks": "N/A",
         "evidence_document": "Joining Report",
