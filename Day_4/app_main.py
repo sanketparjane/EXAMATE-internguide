@@ -39,6 +39,16 @@ def search(q: str):
     results = search_records(q)
     return results
 
+@app.get("/search/semantic")
+def search_semantic(q: str, limit: int = 5):
+    """
+    Perform semantic search over chunked InternGuide documents in persistent Chroma vectorstore.
+    Returns: list of matching chunks with source, page, title, and similarity score.
+    """
+    from app.embed import semantic_search
+    results = semantic_search(q, top_k=limit)
+    return results
+
 @app.post("/questions")
 def post_question(question: QuestionModel):
     return {
