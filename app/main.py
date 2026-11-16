@@ -7,6 +7,7 @@ Exposes endpoints for records, keyword search, Gemini chat, and Chroma semantic 
 from pathlib import Path
 import sys
 import json
+from typing import Optional
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -31,6 +32,11 @@ class QuestionModel(BaseModel):
 
 class ChatRequest(BaseModel):
     question: str
+
+class AskRequest(BaseModel):
+    question: Optional[str] = None
+    query: Optional[str] = None
+    prompt: Optional[str] = None
 
 @app.get("/health")
 def health_check():
@@ -80,3 +86,15 @@ def chat(request: ChatRequest):
     """
     result = ask(request.question)
     return result
+
+@app.post("/ask")
+def ask_rag_endpoint(request: AskRequest):
+    """
+    RAG endpoint: answers InternGuide questions from retrieved chunks with citations.
+    Must say 'I don't know' for Q6 and out-of-scope queries.
+    """
+    q = request.question or request.query or request.prompt
+    if not q:
+        raise HTTPException(status_code=400, detail="Question, query, or prompt is required")
+    from app.rag import ask as rag_ask
+    return rag_ask(q)

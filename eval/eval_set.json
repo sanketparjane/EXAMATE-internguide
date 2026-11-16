@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "question": "How many hours is one internship credit as per AICTE?",
+    "ground_truth": "As per AICTE Internship Policy 2019 and UGC Guidelines, 1 credit is equivalent to 30 hours of internship engagement.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 7,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 2,
+    "question": "How many leave days are allowed during a 6-week internship?",
+    "ground_truth": "AICTE guidelines do not specify a fixed leave quota; interns are expected to complete the minimum required hours (minimum 45 hours per week or 30 hours per credit). Any leave taken reduces total hours and must be compensated.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 7,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 3,
+    "question": "Does an online internship count for AICTE internship credits?",
+    "ground_truth": "Yes, online internships with industry, government bodies, NGOs, PSUs, or MSMEs are recognized and eligible for credits under AICTE rules provided valid completion evidence is submitted.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 9,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 4,
+    "question": "I did a 90-hour internship with 9/10 from the company and 5.67 from the college panel, plus a 55-hour rural internship with 6/10. What is my credit and net score?",
+    "ground_truth": "90 hours yields 3 credits with a 60:40 weighted score of 7.67/10. 55 hours yields 1 credit with score 6/10. Total credits earned is 4 credits, with an overall weighted score of approximately 7.25/10.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 35,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 5,
+    "question": "I am a final-year B.Tech student, 21 years old. Can I apply for the PM Internship Scheme, and how much stipend will I get?",
+    "ground_truth": "Yes, candidates aged 21-24 are eligible; final-year students require an NOC from their institute. Eligible interns receive a monthly stipend of Rs 5,000 (Rs 4,500 from company + Rs 500 from government) plus a one-time grant of Rs 6,000.",
+    "expected_source": "data/records.json",
+    "expected_page": 1,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 6,
+    "question": "Which specific IT companies in Pune are offering paid AI internships this summer? (Note: InternGuide cannot answer this as the data only covers AICTE rules and PMIS eligibility).",
+    "ground_truth": "I don't know based on the provided information. InternGuide data only covers AICTE rules and PMIS eligibility criteria, not live company vacancies.",
+    "expected_source": null,
+    "expected_page": null,
+    "is_out_of_scope": true
+  },
+  {
+    "id": 7,
+    "question": "Is a 4-week rural NSS camp eligible for internship credits?",
+    "ground_truth": "Yes, rural internships and NSS/community activities are eligible for 4-6 credits under AICTE Table 2, evaluated by the Faculty Mentor, TPO, or NSS/NCC head.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 9,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 8,
+    "question": "What is the family income limit to be eligible for the PMIS?",
+    "ground_truth": "The maximum family income limit to be eligible for the Prime Minister's Internship Scheme is Rs 8 Lakh per annum.",
+    "expected_source": "data/records.json",
+    "expected_page": 1,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 9,
+    "question": "Do I need an NOC from my college to join a 12-month internship under the PM Internship Scheme?",
+    "ground_truth": "Yes, an NOC (No Objection Certificate) from the educational institution is required for final-year and distance/ODL students participating in the PM Internship Scheme.",
+    "expected_source": "data/records.json",
+    "expected_page": 1,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 10,
+    "question": "How are credits evaluated for an Innovation/IPR incubation project?",
+    "ground_truth": "Innovation/IPR incubation activities are assigned 4-6 credits (for 4-6 weeks duration) and evaluated by the Faculty Mentor and Cell In-Charge based on certificates, patent filings, or project reports.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 9,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 11,
+    "question": "What is the minimum internship credit requirement for a 4-year B.Tech degree programme under AICTE?",
+    "ground_truth": "AICTE guidelines mandate a minimum of 14-20 credits of Internship / Entrepreneurial activities for completion of a 4-year B.Tech degree.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 7,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 12,
+    "question": "What is the evaluation weightage distribution between industry supervisor and college panel under AICTE?",
+    "ground_truth": "AICTE recommends an evaluation ratio of 60% weightage allocated to the industry supervisor and 40% weightage to the college faculty mentor / evaluation panel.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 35,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 13,
+    "question": "What evidence document is required to claim credits for an institutional hackathon or innovation competition?",
+    "ground_truth": "A participation or achievement Certificate is the required evidence document, evaluated by the Faculty Mentor or Programme Head.",
+    "expected_source": "internship_doc_1.pdf",
+    "expected_page": 9,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 14,
+    "question": "How many maximum internship offers can a candidate accept or reject on the PM Internship Scheme portal?",
+    "ground_truth": "Candidates can hold or reject a maximum of 3 internship offers under the PM Internship Scheme candidate rules.",
+    "expected_source": "data/records.json",
+    "expected_page": 1,
+    "is_out_of_scope": false
+  },
+  {
+    "id": 15,
+    "question": "What is the capital city of Australia and what is its current population?",
+    "ground_truth": "I don't know based on the provided information. This query is unrelated to AICTE internship policies or the PM Internship Scheme.",
+    "expected_source": null,
+    "expected_page": null,
+    "is_out_of_scope": true
+  }
+]
