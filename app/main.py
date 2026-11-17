@@ -7,7 +7,7 @@ Exposes endpoints for records, keyword search, Gemini chat, and Chroma semantic 
 from pathlib import Path
 import sys
 import json
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -37,6 +37,14 @@ class AskRequest(BaseModel):
     question: Optional[str] = None
     query: Optional[str] = None
     prompt: Optional[str] = None
+
+class AgentRequest(BaseModel):
+    query: Optional[str] = None
+    question: Optional[str] = None
+    prompt: Optional[str] = None
+    session_id: Optional[str] = "default_session"
+    approved: Optional[bool] = True
+    activities: Optional[List[Dict[str, Any]]] = None
 
 @app.get("/health")
 def health_check():
@@ -98,3 +106,22 @@ def ask_rag_endpoint(request: AskRequest):
         raise HTTPException(status_code=400, detail="Question, query, or prompt is required")
     from app.rag import ask as rag_ask
     return rag_ask(q)
+
+@app.post("/agent")
+def agent_endpoint(request: AgentRequest):
+    """
+    Day 9 Agent endpoint:
+    Runs the LangGraph agent with memory and one approval step.
+    Orchestrates RAG search and internship_credit_calculator (1 credit = 45 hours, 70% industry + 30% panel).
+    """
+    q = request.query or request.question or request.prompt
+    if not q and not request.activities:
+        raise HTTPException(status_code=400, detail="Query, question, prompt, or activities list is required")
+    from app.graph import run_langgraph_agent
+    res = run_langgraph_agent(
+        query=q or "Calculate internship credits and score",
+        session_id=request.session_id or "default_session",
+        approved=True if request.approved is None else request.approved,
+        activities=request.activities
+    )
+    return res

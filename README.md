@@ -46,3 +46,21 @@ InternGuide evaluates two retrieval configurations over a 15-question benchmark 
 2. **Strict Out-of-Scope Refusal:** When asked about external topics like Pune IT company listings (Question 6), the system strictly returns:
    > *"I don't know based on the provided information. InternGuide only covers AICTE internship rules and PMIS eligibility criteria."*
 3. **Endpoint:** `POST /ask` accepts `{"question": "..."}` and returns the synthesized answer with metadata citations.
+
+---
+
+## Day 9: Agent Tools, Hand-written Loop & LangGraph with Memory + Approval Step
+
+- **Agent Tools (`app/tools.py`):**
+  - `internship_credit_calculator`: Converts hours to credits (**1 credit = 45 hours**) and calculates:
+    - *Per-activity marks:* $70\% \text{ industry} + 30\% \text{ institute panel}$
+    - *Net score:* Hours-weighted average of activity marks.
+  - `rag_search`: Grounded search over policy knowledge base with citations.
+- **Hand-written Agent Loop (`app/agent_loop.py`):**
+  - Custom reasoning loop evaluating query intent and coordinating tool calls.
+- **LangGraph Agent (`app/graph.py`):**
+  - Rebuilt in LangGraph `StateGraph` with:
+    - Conversation memory via `MemorySaver` (thread-scoped).
+    - **One Approval Step:** Faculty mentor authorization required before academic credit calculation and award.
+- **FastAPI Endpoint:** `POST /agent` accepts queries or activity parameters and returns the synthesized agent response with tool tracking.
+
