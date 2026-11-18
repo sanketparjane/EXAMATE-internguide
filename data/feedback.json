@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2026-11-18T10:15:30",
+    "query": "How many hours is one internship credit as per AICTE?",
+    "answer": "As per AICTE Internship Policy 2019 and UGC Guidelines, 1 internship credit is equivalent to 45 hours (or 30 hours for classroom-based activities). [internship_doc_1.pdf, Page 7]",
+    "rating": "up",
+    "tools_used": ["rag_search"],
+    "citations": [
+      {
+        "source": "internship_doc_1.pdf",
+        "page": 7,
+        "title": "AICTE Internship Policy Guidelines"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-11-18T11:42:15",
+    "query": "Does an online internship count for AICTE credits?",
+    "answer": "Yes, online internships are recognized by AICTE Table 2 when conducted with registered firms or government bodies. [internship_doc_1.pdf, Page 9]",
+    "rating": "up",
+    "tools_used": ["rag_search"],
+    "citations": [
+      {
+        "source": "internship_doc_1.pdf",
+        "page": 9,
+        "title": "AICTE Internship Activities"
+      }
+    ]
+  }
+]

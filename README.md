@@ -64,3 +64,32 @@ InternGuide evaluates two retrieval configurations over a 15-question benchmark 
     - **One Approval Step:** Faculty mentor authorization required before academic credit calculation and award.
 - **FastAPI Endpoint:** `POST /agent` accepts queries or activity parameters and returns the synthesized agent response with tool tracking.
 
+---
+
+## Day 10: Streamlit UI & Checkpoint 2 Live Demo
+
+![InternGuide Streamlit UI](assets/ui_screenshot.png)
+
+- **Streamlit Web Application (`ui/app.py` & `Day_10/app.py`):**
+  - **Chat Interface:** Interactive chat calling `/agent` (LangGraph) or `/ask` (RAG), with in-process fallbacks.
+  - **Citations Display:** Detailed document source and page badges on grounded responses.
+  - **Thumbs Up / Down:** Interactive feedback buttons saving ratings to `data/feedback.json`.
+  - **Signature Feature — Credit Progress Bar:**
+    - Visualizes student progress toward the **14–20 credit (630–900 hour)** AICTE B.Tech requirement.
+    - Color-coded by AICTE Table 2 activity head:
+      * 🟦 Industry / Corporate Internship
+      * 🟩 Rural / NSS / Social Internship
+      * 🟪 Innovation / Incubation / Startup
+      * 🟧 Hackathon / Technical Competitions
+    - Automatically calculates credits ($1 \text{ credit} = 45 \text{ hours}$) and net weighted score ($70\% \text{ industry} + 30\% \text{ institute panel}$).
+
+### How to Run the Streamlit UI:
+```bash
+streamlit run ui/app.py
+```
+Or:
+```bash
+python -m streamlit run ui/app.py
+```
+
+
