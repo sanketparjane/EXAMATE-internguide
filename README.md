@@ -44,7 +44,7 @@ InternGuide evaluates two retrieval configurations over a 15-question benchmark 
 ### Key Highlights:
 1. **Grounded Synthesis with Citations:** Every answer cites the exact policy source and page number (e.g., `[internship_doc_1.pdf, Page 7]`).
 2. **Strict Out-of-Scope Refusal:** When asked about external topics like Pune IT company listings (Question 6), the system strictly returns:
-   > *"I don't know based on the provided information. InternGuide only covers AICTE internship rules and PMIS eligibility criteria."*
+
 3. **Endpoint:** `POST /ask` accepts `{"question": "..."}` and returns the synthesized answer with metadata citations.
 
 ---
