@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.rag import ask, is_out_of_scope, answer_query
+from app.rag import ask
 
 if __name__ == "__main__":
     print("Testing Day 8 RAG Pipeline:")

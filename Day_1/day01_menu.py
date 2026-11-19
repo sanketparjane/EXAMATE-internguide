@@ -4,9 +4,9 @@ while True:
     print("2: Sample Questions")
     print("3: Check Internship Duration Rule")
     print("0: Exit")
-    
+
     choice = input("Please select an option (0-3): ")
-    
+
     if choice == '1':
         print("\nInternGuide helps engineering students understand AICTE internship hours, credits, and evaluation rules.")
     elif choice == '2':
@@ -17,7 +17,7 @@ while True:
     elif choice == '3':
         print("\n--- Internship Duration Rule Check ---")
         weeks = int(input("How many weeks was your internship? "))
-        
+
         # One if/elif rule check from the domain
         if weeks < 3:
             print("Under AICTE rules, this might be too short to qualify for standard internship credits. Minimum is usually 3-4 weeks.")

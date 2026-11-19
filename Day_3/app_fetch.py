@@ -1,6 +1,4 @@
 # Day_3/app_fetch.py
-import os
-import sys
 from pathlib import Path
 import requests
 
@@ -18,26 +16,26 @@ urls = [
 def download_pdfs():
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    
+
     downloaded_files = []
     for i, url in enumerate(urls, start=1):
         try:
             print(f"Downloading doc {i} from {url}...")
             response = requests.get(url, timeout=15, headers=headers)
             response.raise_for_status()
-            
+
             file_path = RAW_DATA_DIR / f"internship_doc_{i}.pdf"
             with open(file_path, "wb") as f:
                 f.write(response.content)
-                
+
             print(f"Success! Saved to {file_path} ({len(response.content)} bytes)")
             downloaded_files.append(str(file_path))
-            
+
         except requests.exceptions.RequestException as e:
             print(f"Request error downloading doc {i} ({url}): {e}")
         except Exception as e:
             print(f"Unexpected error downloading doc {i} ({url}): {e}")
-            
+
     print(f"Downloaded {len(downloaded_files)}/{len(urls)} documents successfully.")
     return downloaded_files
 

@@ -6,11 +6,10 @@ synthesizes grounded answers with citations, and strictly returns 'I don't know'
 when the requested information is absent or out of scope (e.g. Q6).
 """
 
-import os
 import sys
 import re
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:

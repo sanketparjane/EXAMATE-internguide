@@ -6,10 +6,8 @@ Capable of reasoning over user requests and orchestrating:
 2. internship_credit_calculator (1 credit = 45 hours; 70% industry + 30% panel; hours-weighted net score)
 """
 
-import os
 import sys
 import re
-import json
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
@@ -17,7 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.tools import internship_credit_calculator, rag_search, tool_registry
+from app.tools import internship_credit_calculator, rag_search
 
 
 def extract_calculation_params(text: str) -> Optional[List[Dict[str, Any]]]:

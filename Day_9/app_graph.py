@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.graph import run_langgraph_agent, build_agent_graph, agent_graph
+from app.graph import run_langgraph_agent
 
 if __name__ == "__main__":
     print("Testing Day 9 LangGraph Agent (With Memory & Approval Step):")

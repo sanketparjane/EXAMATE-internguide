@@ -8,13 +8,11 @@ Features:
 4. Signature Feature: Colour-coded Credit Progress Bar toward AICTE 14-20 credit (630-900 hour) B.Tech target.
 """
 
-import os
 import sys
 import json
-import time
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
 import requests
 import streamlit as st
@@ -28,7 +26,6 @@ if str(PROJECT_ROOT) not in sys.path:
 try:
     from app.graph import run_langgraph_agent
     from app.rag import ask as rag_ask
-    from app.tools import internship_credit_calculator
     LOCAL_MODULES_AVAILABLE = True
 except Exception:
     LOCAL_MODULES_AVAILABLE = False
@@ -373,7 +370,7 @@ with tab_tracker:
     with col_t1:
         st.caption(f"🏁 **Minimum B.Tech Threshold:** 14 credits (630 hrs) — Status: {'✅ Achieved' if total_credits >= 14 else f'⏳ Need {(14 - total_credits):.2f} credits ({(630 - total_hours):.1f} hrs)'}")
     with col_t2:
-        st.caption(f"🎖️ **Max Target:** 20 credits (900 hrs)")
+        st.caption("🎖️ **Max Target:** 20 credits (900 hrs)")
     with col_t3:
         st.caption(f"📈 Total Progress: **{pct_to_max:.1f}%** of 20 credits target")
 
@@ -395,7 +392,7 @@ with tab_tracker:
 
     # --- ACTIVITY LIST & MANAGER ---
     st.subheader("📋 Completed Activities Portfolio")
-    
+
     if st.session_state.activities:
         for idx, act in enumerate(st.session_state.activities):
             color = ACTIVITY_HEADS.get(act["head"], {}).get("color", "#38bdf8")

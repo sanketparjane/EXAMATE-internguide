@@ -1,0 +1,27 @@
+# ruff.toml
+target-version = "py311"
+line-length = 120
+
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "RAG_CLASSWORK",
+    "data/chroma",
+    "build",
+    "dist"
+]
+
+[lint]
+# Check for standard errors and warnings
+select = ["E", "F", "W"]
+ignore = [
+    "E501",  # Line too long
+    "E402",  # Module level import not at top of file
+    "F403",  # Star imports used for convenience
+    "F405",  # Star import undefined names
+    "F841",  # Local variable assigned but unused
+    "W291",  # Trailing whitespace
+    "W292",  # No newline at end of file
+    "W293",  # Blank line contains whitespace
+]

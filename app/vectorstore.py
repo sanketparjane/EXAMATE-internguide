@@ -132,7 +132,7 @@ def query_vectorstore(
 
 if __name__ == "__main__":
     count = index_chunks()
-    print(f"\nTesting vectorstore query: 'How many hours is one internship credit?'")
+    print("\nTesting vectorstore query: 'How many hours is one internship credit?'")
     results = query_vectorstore("How many hours is one internship credit?", top_k=2)
     for r in results:
         print(f"[{r['source']} | Page {r['page']} | Score {r['similarity_score']}]")

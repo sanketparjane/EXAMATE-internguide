@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.tools import internship_credit_calculator, rag_search, tool_registry
+from app.tools import internship_credit_calculator
 
 if __name__ == "__main__":
     print("Testing Day 9 Agent Tool: internship_credit_calculator")

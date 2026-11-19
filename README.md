@@ -92,4 +92,45 @@ Or:
 python -m streamlit run ui/app.py
 ```
 
+---
+
+## Day 11: Pytest Test Suite, Ruff Linting & Dockerization
+
+### Run with Docker
+
+To build and start both the InternGuide FastAPI API and Streamlit UI in isolated Docker containers:
+
+```bash
+docker compose up --build
+```
+
+- **FastAPI API & Docs:** [`http://localhost:8000/docs`](http://localhost:8000/docs)
+- **FastAPI Health Check:** [`http://localhost:8000/health`](http://localhost:8000/health)
+- **Streamlit Web Application & Progress Bar:** [`http://localhost:8501`](http://localhost:8501)
+
+To stop the containers:
+```bash
+docker compose down
+```
+
+### Pytest Test Suite (17 Passing Tests)
+Run the full test suite and verify linter compliance:
+```bash
+# Run automated test & lint runner
+python Day_11/run_tests.py
+
+# Or run pytest directly
+pytest -v
+
+# Or verify ruff linter
+ruff check .
+```
+- **Tests Covered (`tests/`):**
+  - `test_health_and_records.py`: `/health`, `/records`, `/records/{id}`, 404 handling.
+  - `test_search.py`: Keyword TF-IDF search (`/search`) and semantic vector search (`/search/semantic`).
+  - `test_ask_rag.py`: `/ask` with fake LLM mocking, grounded citation tests, and strict Q6 out-of-scope refusal (*"I don't know based on the provided information"*).
+  - `test_agent_tools.py`: `internship_credit_calculator` (1 credit = 45 hours, 70% industry + 30% panel marks, net hours-weighted score), and `rag_search`.
+  - `test_agent_workflow.py`: `POST /agent` LangGraph execution and approval step verification.
+
+
 

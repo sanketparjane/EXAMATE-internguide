@@ -5,7 +5,6 @@ Uses the persistent Chroma vectorstore to perform semantic retrieval on
 InternGuide policy documents and records, and generates eval/search_results.md.
 """
 
-import os
 import sys
 from pathlib import Path
 from typing import List, Dict, Any, Optional
@@ -14,7 +13,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.vectorstore import query_vectorstore, index_chunks
+from app.vectorstore import query_vectorstore
 
 # The 10 official test questions for InternGuide
 TEST_QUESTIONS = [
