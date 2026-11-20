@@ -1,7 +1,17 @@
 # InternGuide
 
+[![CI Pipeline](https://github.com/sanketparjane/EXAMATE-internguide/actions/workflows/ci.yml/badge.svg)](https://github.com/sanketparjane/EXAMATE-internguide/actions/workflows/ci.yml)
+[![Live API](https://img.shields.io/badge/API-Live%20on%20Render-success)](https://internguide-api.onrender.com/health)
+[![Live UI](https://img.shields.io/badge/Streamlit%20App-Live%20Demo-blue)](https://internguide.onrender.com)
+
 **Product:** InternGuide
 **Student:** Sanket Vilas Parjane (PRN No: 2124UMLM2044)
+
+**Live Deployment URLs:**
+- **Public Health Endpoint (`/health`):** [`https://internguide-api.onrender.com/health`](https://internguide-api.onrender.com/health)
+- **Interactive Swagger Docs (`/docs`):** [`https://internguide-api.onrender.com/docs`](https://internguide-api.onrender.com/docs)
+- **Streamlit Live Dashboard & Progress Bar:** [`https://internguide.onrender.com`](https://internguide.onrender.com)
+
 
 **What it is (Problem/Solution):** 
 Explains how many internship hours and credits an engineering student needs under AICTE rules, how they are evaluated, and which government internship schemes (like PM Internship Scheme) they can apply to.
@@ -131,6 +141,29 @@ ruff check .
   - `test_ask_rag.py`: `/ask` with fake LLM mocking, grounded citation tests, and strict Q6 out-of-scope refusal (*"I don't know based on the provided information"*).
   - `test_agent_tools.py`: `internship_credit_calculator` (1 credit = 45 hours, 70% industry + 30% panel marks, net hours-weighted score), and `rag_search`.
   - `test_agent_workflow.py`: `POST /agent` LangGraph execution and approval step verification.
+
+---
+
+## Day 12: CI/CD Pipeline, Pull Request Workflow & Public Cloud Deployment
+
+### 1. Continuous Integration (CI Pipeline)
+Automated GitHub Actions workflow configured in [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
+- **Linting:** Runs `ruff check .` across the repository with zero errors.
+- **Unit & Integration Tests:** Executes all 17 tests via `pytest -v`.
+- **Docker Image Build:** Verifies container buildability (`docker build -t internguide:latest .`).
+- **CI Badge Status:** Displays real-time green build status at the top of this `README.md`.
+
+### 2. Pull Request & Branch Strategy
+- Feature branch: `feature/day-12-deployment`
+- Validated via automated CI workflow before merging into `main`.
+
+### 3. Public Cloud Deployment (Render / Hugging Face Spaces)
+- **Deployment Manifest:** [`render.yaml`](render.yaml) configured with automatic deployment.
+- **Live Public Endpoints:**
+  - **API Health Check:** [`https://internguide-api.onrender.com/health`](https://internguide-api.onrender.com/health) (Public `200 OK`)
+  - **API Interactive Swagger Docs:** [`https://internguide-api.onrender.com/docs`](https://internguide-api.onrender.com/docs)
+  - **Live Streamlit Web Application:** [`https://internguide.onrender.com`](https://internguide.onrender.com)
+
 
 
 
