@@ -6,6 +6,7 @@ synthesizes grounded answers with citations, and strictly returns 'I don't know'
 when the requested information is absent or out of scope (e.g. Q6).
 """
 
+import time
 import sys
 import re
 from pathlib import Path
@@ -16,6 +17,8 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from app.vectorstore import query_vectorstore
+from app.cache import response_cache, estimate_tokens, log_telemetry
+from app.security import validate_input_length, is_prompt_injection, INJECTION_REFUSAL_MESSAGE
 
 # Out-of-scope keywords that InternGuide documents do not cover
 OUT_OF_SCOPE_PATTERNS = [
@@ -171,50 +174,147 @@ def synthesize_answer(query: str, chunks: List[Dict[str, Any]]) -> str:
     return f"Based on the policy guidelines: {first_chunk_text[:350]}..."
 
 
-def ask(question: str, top_k: int = 4) -> Dict[str, Any]:
+def ask(question: str, top_k: int = 4, use_cache: bool = True) -> Dict[str, Any]:
     """
-    Main RAG pipeline entry point.
-    1. Checks if question is out of scope (Q6) -> returns 'I don't know based on the provided information.'
-    2. Retrieves top-k chunks from Chroma vectorstore.
-    3. Synthesizes answer with citations.
+    Main RAG pipeline entry point with latency/token tracking, input limits, prompt-injection defense, and caching.
     """
-    clean_q = question.strip()
+    start_time = time.perf_counter()
+    clean_q = question.strip() if question else ""
 
-    # Step 1: Out-of-scope check (Crucial for Q6 & out-of-scope refusal)
-    if is_out_of_scope(clean_q):
+    # Step 0: Input limits validation
+    is_valid, err_msg = validate_input_length(clean_q)
+    if not is_valid:
+        latency_ms = (time.perf_counter() - start_time) * 1000.0
         return {
             "question": clean_q,
-            "answer": "I don't know based on the provided information. InternGuide only covers AICTE internship rules and PMIS eligibility criteria.",
+            "answer": f"Error: {err_msg}",
+            "error": err_msg,
             "citations": [],
-            "retrieved_chunks": []
+            "retrieved_chunks": [],
+            "latency_ms": round(latency_ms, 2),
+            "token_usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0},
+            "cached": False
         }
 
-    # Step 2: Retrieve relevant chunks from persistent ChromaDB
+    # Step 1: Prompt-injection defense
+    if is_prompt_injection(clean_q):
+        latency_ms = (time.perf_counter() - start_time) * 1000.0
+        prompt_tokens = estimate_tokens(clean_q)
+        completion_tokens = estimate_tokens(INJECTION_REFUSAL_MESSAGE)
+        log_telemetry("/ask", clean_q, latency_ms, prompt_tokens, completion_tokens, cached=False)
+        return {
+            "question": clean_q,
+            "answer": INJECTION_REFUSAL_MESSAGE,
+            "citations": [],
+            "retrieved_chunks": [],
+            "latency_ms": round(latency_ms, 2),
+            "token_usage": {
+                "prompt_tokens": prompt_tokens,
+                "completion_tokens": completion_tokens,
+                "total_tokens": prompt_tokens + completion_tokens
+            },
+            "cached": False,
+            "security_flag": "prompt_injection_blocked"
+        }
+
+    # Step 2: Cache lookup
+    if use_cache:
+        cached_res = response_cache.get(clean_q)
+        if cached_res:
+            latency_ms = (time.perf_counter() - start_time) * 1000.0
+            cached_copy = dict(cached_res)
+            cached_copy["latency_ms"] = round(latency_ms, 2)
+            cached_copy["cached"] = True
+            log_telemetry(
+                "/ask", clean_q, latency_ms,
+                cached_copy.get("token_usage", {}).get("prompt_tokens", 0),
+                cached_copy.get("token_usage", {}).get("completion_tokens", 0),
+                cached=True
+            )
+            return cached_copy
+
+    # Step 3: Out-of-scope check (Crucial for Q6 & out-of-scope refusal)
+    if is_out_of_scope(clean_q):
+        answer = "I don't know based on the provided information. InternGuide only covers AICTE internship rules and PMIS eligibility criteria."
+        latency_ms = (time.perf_counter() - start_time) * 1000.0
+        prompt_tokens = estimate_tokens(clean_q)
+        completion_tokens = estimate_tokens(answer)
+        res = {
+            "question": clean_q,
+            "answer": answer,
+            "citations": [],
+            "retrieved_chunks": [],
+            "latency_ms": round(latency_ms, 2),
+            "token_usage": {
+                "prompt_tokens": prompt_tokens,
+                "completion_tokens": completion_tokens,
+                "total_tokens": prompt_tokens + completion_tokens
+            },
+            "cached": False
+        }
+        if use_cache:
+            response_cache.set(clean_q, res)
+        log_telemetry("/ask", clean_q, latency_ms, prompt_tokens, completion_tokens, cached=False)
+        return res
+
+    # Step 4: Retrieve relevant chunks from persistent ChromaDB
     chunks = query_vectorstore(clean_q, top_k=top_k)
 
     # Check relevance threshold (if top chunk distance is excessively high)
     if not chunks or (chunks and chunks[0].get("similarity_score", 0.0) < 0.40):
-        return {
+        answer = "I don't know based on the provided information."
+        latency_ms = (time.perf_counter() - start_time) * 1000.0
+        prompt_tokens = estimate_tokens(clean_q)
+        completion_tokens = estimate_tokens(answer)
+        res = {
             "question": clean_q,
-            "answer": "I don't know based on the provided information.",
+            "answer": answer,
             "citations": [],
-            "retrieved_chunks": []
+            "retrieved_chunks": [],
+            "latency_ms": round(latency_ms, 2),
+            "token_usage": {
+                "prompt_tokens": prompt_tokens,
+                "completion_tokens": completion_tokens,
+                "total_tokens": prompt_tokens + completion_tokens
+            },
+            "cached": False
         }
+        if use_cache:
+            response_cache.set(clean_q, res)
+        log_telemetry("/ask", clean_q, latency_ms, prompt_tokens, completion_tokens, cached=False)
+        return res
 
-    # Step 3: Format citations from retrieved metadata
+    # Step 5: Format citations from retrieved metadata
     citations = build_citations(chunks)
     citation_str = format_citation_string(citations)
 
-    # Step 4: Synthesize answer
+    # Step 6: Synthesize answer
     base_answer = synthesize_answer(clean_q, chunks)
     full_answer = f"{base_answer} {citation_str}".strip() if citation_str else base_answer
 
-    return {
+    latency_ms = (time.perf_counter() - start_time) * 1000.0
+    prompt_tokens = estimate_tokens(clean_q)
+    completion_tokens = estimate_tokens(full_answer)
+
+    result = {
         "question": clean_q,
         "answer": full_answer,
         "citations": citations,
-        "retrieved_chunks": chunks
+        "retrieved_chunks": chunks,
+        "latency_ms": round(latency_ms, 2),
+        "token_usage": {
+            "prompt_tokens": prompt_tokens,
+            "completion_tokens": completion_tokens,
+            "total_tokens": prompt_tokens + completion_tokens
+        },
+        "cached": False
     }
+
+    if use_cache:
+        response_cache.set(clean_q, result)
+
+    log_telemetry("/ask", clean_q, latency_ms, prompt_tokens, completion_tokens, cached=False)
+    return result
 
 
 # Standard alias

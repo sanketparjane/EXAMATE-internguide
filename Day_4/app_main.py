@@ -85,10 +85,15 @@ def ask_rag_endpoint(request: AskRequest):
     """
     RAG endpoint: answers InternGuide questions from retrieved chunks with citations.
     Must say 'I don't know' for Q6 and out-of-scope queries.
+    Enforces input length limits, prompt-injection defense, and caching.
     """
     q = request.question or request.query or request.prompt
     if not q:
         raise HTTPException(status_code=400, detail="Question, query, or prompt is required")
+    from app.security import validate_input_length
+    is_valid, err_msg = validate_input_length(q)
+    if not is_valid:
+        raise HTTPException(status_code=400, detail=err_msg)
     from app.rag import ask as rag_ask
     return rag_ask(q)
 
@@ -102,6 +107,11 @@ def agent_endpoint(request: AgentRequest):
     q = request.query or request.question or request.prompt
     if not q and not request.activities:
         raise HTTPException(status_code=400, detail="Query, question, prompt, or activities list is required")
+    if q:
+        from app.security import validate_input_length
+        is_valid, err_msg = validate_input_length(q)
+        if not is_valid:
+            raise HTTPException(status_code=400, detail=err_msg)
     from app.graph import run_langgraph_agent
     res = run_langgraph_agent(
         query=q or "Calculate internship credits and score",
