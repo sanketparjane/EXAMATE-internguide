@@ -115,6 +115,15 @@ Benchmarked over a 15-question evaluation suite (`eval/eval_set.json`):
 
 ---
 
+## Documentation & Milestone Verification
+
+- 📑 **[Milestone Progress Tracker (PROGRESS.md)](PROGRESS.md)**: Full 14-day completion record with all milestones marked `[x] CLOSED`.
+- 🎙️ **[Interview Guide & Hardest Problem Story (docs/interview.md)](docs/interview.md)**: 60-second elevator pitch, 10 likely technical interview questions, and deep-dive technical narrative.
+- 📄 **[Resume Bullets (docs/resume.md)](docs/resume.md)**: 3 high-impact STAR-formatted engineering bullets.
+- 🎬 **[Day 14 Demo Rehearsal (Day_14/README.md)](Day_14/README.md)**: Automated two-run live demonstration script and validation logs.
+
+---
+
 ## Visual Dashboard Preview (Checkpoint 2)
 
 ![InternGuide Streamlit UI](assets/ui_screenshot.png)
