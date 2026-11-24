@@ -46,6 +46,16 @@ class AgentRequest(BaseModel):
     approved: Optional[bool] = True
     activities: Optional[List[Dict[str, Any]]] = None
 
+@app.get("/")
+def root():
+    return {
+        "message": "Welcome to InternGuide API",
+        "docs": "/docs",
+        "health": "/health",
+        "records": "/records",
+        "status": "running"
+    }
+
 @app.get("/health")
 def health_check():
     return {"status": "ok", "project": "InternGuide"}
