@@ -4,7 +4,9 @@
     "query": "How many hours is one internship credit as per AICTE?",
     "answer": "As per AICTE Internship Policy 2019 and UGC Guidelines, 1 internship credit is equivalent to 45 hours (or 30 hours for classroom-based activities). [internship_doc_1.pdf, Page 7]",
     "rating": "up",
-    "tools_used": ["rag_search"],
+    "tools_used": [
+      "rag_search"
+    ],
     "citations": [
       {
         "source": "internship_doc_1.pdf",
@@ -18,7 +20,9 @@
     "query": "Does an online internship count for AICTE credits?",
     "answer": "Yes, online internships are recognized by AICTE Table 2 when conducted with registered firms or government bodies. [internship_doc_1.pdf, Page 9]",
     "rating": "up",
-    "tools_used": ["rag_search"],
+    "tools_used": [
+      "rag_search"
+    ],
     "citations": [
       {
         "source": "internship_doc_1.pdf",
@@ -26,5 +30,25 @@
         "title": "AICTE Internship Activities"
       }
     ]
+  },
+  {
+    "timestamp": "2026-11-24T11:03:48.763483",
+    "query": "Which specific IT companies in Pune are offering paid AI internships?",
+    "answer": "I don't know based on the provided information. InternGuide only covers AICTE internship rules and PMIS eligibility criteria.",
+    "rating": "up",
+    "tools_used": [
+      "rag_search"
+    ],
+    "citations": []
+  },
+  {
+    "timestamp": "2026-11-24T11:03:51.850408",
+    "query": "Which specific IT companies in Pune are offering paid AI internships?",
+    "answer": "I don't know based on the provided information. InternGuide only covers AICTE internship rules and PMIS eligibility criteria.",
+    "rating": "up",
+    "tools_used": [
+      "rag_search"
+    ],
+    "citations": []
   }
 ]
